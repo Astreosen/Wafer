@@ -148,6 +148,13 @@ public class Paneler extends JPanel {
 										
 										tx = transists.get(z).Ox + (transists.get(z).width / 2) + 20;
 										ty = transists.get(z).Oy;
+									} else if(Math.abs(transists.get(z).Ox - x) <= 10 &&  Math.abs(transists.get(z).Oy  + (transists.get(z).height / 2) + 20 - y) <= 10)
+									{
+										x = transists.get(z).Ox;
+										y = transists.get(z).Oy + (transists.get(z).height / 2) + 20;
+										
+										tx = transists.get(z).Ox;
+										ty = transists.get(z).Oy + (transists.get(z).height / 2) + 20;
 									}
 								}
 								
@@ -348,7 +355,7 @@ public class Paneler extends JPanel {
 		A.drawString(Presists.get(i).Current + " Amps", Presists.get(i).Ox + 15, Presists.get(i).Oy - 10);
 		}
 		
-		//Draw Resistors
+		//Draw Transistors
 		for(int i = 0; i < transists.size(); i++)
 		{
 			transists.get(i).Physics();
@@ -357,7 +364,15 @@ public class Paneler extends JPanel {
 			A.drawLine(transists.get(i).Ox - (transists.get(i).width / 2), transists.get(i).Oy, transists.get(i).Ox - (transists.get(i).width / 2) - 20, transists.get(i).Oy);
 			A.drawLine(transists.get(i).Ox + (transists.get(i).width / 2), transists.get(i).Oy, transists.get(i).Ox + (transists.get(i).width / 2) + 20, transists.get(i).Oy);
 			A.drawLine(transists.get(i).Ox, transists.get(i).Oy  + (transists.get(i).height / 2), transists.get(i).Ox, transists.get(i).Oy  + (transists.get(i).height / 2) + 20);
-			A.drawString("off", transists.get(i).Ox - 20, transists.get(i).Oy  + (transists.get(i).height / 2) - 2);
+			if (transists.get(i).isOn == true)
+			{
+				A.drawString("on", transists.get(i).Ox - 20, transists.get(i).Oy  + (transists.get(i).height / 2) - 2);
+			}
+			
+			if (transists.get(i).isOn == false)
+			{
+				A.drawString("off", transists.get(i).Ox - 20, transists.get(i).Oy  + (transists.get(i).height / 2) - 2);
+			}
 		}
 	}
 }
