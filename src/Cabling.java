@@ -76,6 +76,29 @@ public class Cabling extends Main{
 				Current = super.resists.get(i).Current;
 			}
 		}
+		
+		for (int i = 0; i < super.transists.size(); i++)
+		{
+			//left terminal
+			if (((super.transists.get(i).Ox - (super.transists.get(i).width/2)-20 == x.get(0) && super.transists.get(i).Oy == y.get(0)) || (super.transists.get(i).Ox  - (super.transists.get(i).width/2)-20 == x.get(x.size() - 1) && super.transists.get(i).Oy == y.get(y.size() - 1))) && super.transists.get(i).Voltage != 0)
+			{
+				if (super.transists.get(i).isOn == true)
+				{
+					Voltage = super.transists.get(i).Voltage;
+					Current = super.transists.get(i).Current;
+				}
+			}
+			
+			//right terminal
+			if (((super.transists.get(i).Ox  + (super.transists.get(i).width/2)+20 == x.get(0) && super.transists.get(i).Oy == y.get(0)) || (super.transists.get(i).Ox + (super.transists.get(i).width/2)+20 == x.get(x.size() - 1) && super.transists.get(i).Oy == y.get(y.size() - 1))) && super.transists.get(i).Voltage != 0)
+			{
+				if (super.transists.get(i).isOn == true)
+				{
+					Voltage = super.transists.get(i).Voltage;
+					Current = super.transists.get(i).Current;
+				}
+			}
+		}
 	}
 	
 	
