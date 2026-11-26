@@ -13,7 +13,6 @@ Download Java File and run the Main in an IDE such as Eclipse. After that it is 
 Press enter to finish placing cables. 
 
 KNOWN ISSUES: 
-- Placing multiple items
 - Power not behaving correctly
 - No ability to delete
 - some other stuff that I don't remember at the moment
