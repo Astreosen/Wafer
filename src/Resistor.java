@@ -13,6 +13,7 @@ public class Resistor extends Main{
 	
 	Resistor(double Res)
 	{
+		Resistance = Res;
 		isNew = true;
 	}
 

@@ -22,8 +22,8 @@ public class Main {
 		cable.get(1).isNew = false;
 		resists.add(new Resistor(0));
 		resists.get(0).isNew = false;
-		resists.get(0).Ox = 0;
-		resists.get(0).Oy = 0;
+		resists.get(0).Ox = 999999999;
+		resists.get(0).Oy = 999999999;
 		
 		transists.add(new Transistor());
 		transists.get(0).isNew = false;
@@ -71,7 +71,7 @@ public class Main {
 			{
 				try 
 				{
-					num = Double.parseDouble(RES);
+					num = Double.parseDouble(RES); 
 					break;
 				}
 				catch (Exception e1)
@@ -113,6 +113,7 @@ public class Main {
 		framer.pane.power = power;
 		framer.pane.transists = transists;
 		framer.pane.requestFocusInWindow();
+		framer.setVisible(true);
 	}
 	
 	public static void removeDupes()

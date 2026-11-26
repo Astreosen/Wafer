@@ -351,6 +351,7 @@ public class Paneler extends JPanel {
 		A.drawLine(Presists.get(i).Ox - Presists.get(i).Lx, Presists.get(i).Oy, Presists.get(i).Ox - Presists.get(i).Lx + (Presists.get(i).Lx/2), Presists.get(i).Oy);
 		A.drawOval(Presists.get(i).Ox - Presists.get(i).Lx + (Presists.get(i).Lx/2), Presists.get(i).Oy - 10, 40, 20);
 		A.drawLine(Presists.get(i).Ox + Presists.get(i).Rx, Presists.get(i).Oy, Presists.get(i).Ox + Presists.get(i).Rx - (Presists.get(i).Rx/2), Presists.get(i).Oy);
+		A.drawString(Presists.get(i).Resistance + " Ohms", Presists.get(i).Ox + 15, Presists.get(i).Oy + 50);
 		A.drawString(Presists.get(i).Voltage + " Volts", Presists.get(i).Ox + 15, Presists.get(i).Oy + 20);
 		A.drawString(Presists.get(i).Current + " Amps", Presists.get(i).Ox + 15, Presists.get(i).Oy - 10);
 		}
