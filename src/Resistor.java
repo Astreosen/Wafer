@@ -11,7 +11,7 @@ public class Resistor extends Main{
 	public double temperature = 21;
 	public boolean isNew = true;
 	
-	Resistor()
+	Resistor(double Res)
 	{
 		isNew = true;
 	}

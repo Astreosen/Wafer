@@ -1,6 +1,11 @@
 import java.awt.Button;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
 public class Main {
 	public static ArrayList<Resistor> resists = new ArrayList<>();
 	public static ArrayList<Transistor> transists = new ArrayList<>();
@@ -15,7 +20,7 @@ public class Main {
 		cable.get(0).isNew = false;
 		cable.add(new Cabling());
 		cable.get(1).isNew = false;
-		resists.add(new Resistor());
+		resists.add(new Resistor(0));
 		resists.get(0).isNew = false;
 		resists.get(0).Ox = 0;
 		resists.get(0).Oy = 0;
@@ -36,7 +41,21 @@ public class Main {
 		Button Pbutton = new Button("Power");
 		Pbutton.addActionListener(e -> {
 			removeDupes();
-			power.add(new Power(10));
+			String Volts = JOptionPane.showInputDialog(null, "Enter Voltage:");
+			double num = -1;
+			while (true)
+			{
+				try 
+				{
+					num = Double.parseDouble(Volts);
+					break;
+				}
+				catch (Exception e1)
+				{
+					Volts = JOptionPane.showInputDialog(null, "Invalid, Voltage Must Be A Number:");
+				} 
+			}
+			power.add(new Power(num));
 			
 			framer.pane.requestFocusInWindow();
 			
@@ -46,7 +65,21 @@ public class Main {
 		Button Rbutton = new Button("Resistor");
 		Rbutton.addActionListener(e -> {
 			removeDupes();
-			resists.add(new Resistor());
+			String RES = JOptionPane.showInputDialog(null, "Enter Resistance:");
+			double num = -1;
+			while (true)
+			{
+				try 
+				{
+					num = Double.parseDouble(RES);
+					break;
+				}
+				catch (Exception e1)
+				{
+					RES = JOptionPane.showInputDialog(null, "Invalid, Resistance Must Be A Number:");
+				} 
+			}
+			resists.add(new Resistor(num));
 			
 			framer.pane.requestFocusInWindow();
 			
