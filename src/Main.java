@@ -29,10 +29,13 @@ public class Main {
 		transists.get(0).isNew = false;
 		Button Cbutton = new Button("Cable");
 		Cbutton.addActionListener(e -> {
-			removeDupes();
-			cable.add(new Cabling());
-			cable.get(cable.size()-1).Physics();
-			System.out.println(cable);
+			if (framer.pane.deletionMode == false)
+			{
+				removeDupes();
+				cable.add(new Cabling());
+				cable.get(cable.size()-1).Physics();
+				System.out.println(cable);
+			}
 			framer.pane.requestFocusInWindow();
 			
 		});
@@ -40,23 +43,25 @@ public class Main {
 		
 		Button Pbutton = new Button("Power");
 		Pbutton.addActionListener(e -> {
-			removeDupes();
-			String Volts = JOptionPane.showInputDialog(null, "Enter Voltage:");
-			double num = -1;
-			while (true)
+			if (framer.pane.deletionMode == false)
 			{
-				try 
+				removeDupes();
+				String Volts = JOptionPane.showInputDialog(null, "Enter Voltage:");
+				double num = -1;
+				while (true)
 				{
-					num = Double.parseDouble(Volts);
-					break;
+					try 
+					{
+						num = Double.parseDouble(Volts);
+						break;
+					}
+					catch (Exception e1)
+					{
+						Volts = JOptionPane.showInputDialog(null, "Invalid, Voltage Must Be A Number:");
+					} 
 				}
-				catch (Exception e1)
-				{
-					Volts = JOptionPane.showInputDialog(null, "Invalid, Voltage Must Be A Number:");
-				} 
+				power.add(new Power(num));
 			}
-			power.add(new Power(num));
-			
 			framer.pane.requestFocusInWindow();
 			
 		});
@@ -64,23 +69,25 @@ public class Main {
 		
 		Button Rbutton = new Button("Resistor");
 		Rbutton.addActionListener(e -> {
-			removeDupes();
-			String RES = JOptionPane.showInputDialog(null, "Enter Resistance:");
-			double num = -1;
-			while (true)
+			if (framer.pane.deletionMode == false)
 			{
-				try 
+				removeDupes();
+				String RES = JOptionPane.showInputDialog(null, "Enter Resistance:");
+				double num = -1;
+				while (true)
 				{
-					num = Double.parseDouble(RES); 
-					break;
+					try 
+					{
+						num = Double.parseDouble(RES); 
+						break;
+					}
+					catch (Exception e1)
+					{
+						RES = JOptionPane.showInputDialog(null, "Invalid, Resistance Must Be A Number:");
+					} 
 				}
-				catch (Exception e1)
-				{
-					RES = JOptionPane.showInputDialog(null, "Invalid, Resistance Must Be A Number:");
-				} 
+				resists.add(new Resistor(num));
 			}
-			resists.add(new Resistor(num));
-			
 			framer.pane.requestFocusInWindow();
 			
 		});
@@ -88,9 +95,11 @@ public class Main {
 		
 		Button Tbutton = new Button("Transistor");
 		Tbutton.addActionListener(e -> {
-			removeDupes();
-			transists.add(new Transistor());
-			
+			if (framer.pane.deletionMode == false)
+			{
+				removeDupes();
+				transists.add(new Transistor());
+			}
 			framer.pane.requestFocusInWindow();
 		});
 		framer.pane.add(Tbutton); 
@@ -107,6 +116,31 @@ public class Main {
 				cable.get(c).y.add(0);
 			}
 		}
+		javax.swing.Timer deleteTimer = new javax.swing.Timer(16, e -> {
+			if (framer.pane.deletionMode == true)
+			{
+				
+				if (framer.pane.indexToDelete != -1)
+				{
+					if (framer.pane.listToDeleteFrom == 'R')
+					{resists.remove(framer.pane.indexToDelete);}
+					
+					if (framer.pane.listToDeleteFrom == 'P')
+					{power.remove(framer.pane.indexToDelete);}
+					
+					if (framer.pane.listToDeleteFrom == 'T')
+					{transists.remove(framer.pane.indexToDelete);}
+					
+					if (framer.pane.listToDeleteFrom == 'C')
+					{System.out.println("deleted");
+						cable.remove(framer.pane.indexToDelete);}
+					
+					framer.pane.indexToDelete = -1;
+					framer.pane.listToDeleteFrom = 'n';
+				}
+			}
+		});
+		deleteTimer.start();
 		
 		framer.pane.Presists = resists;
 		framer.pane.cable = cable;

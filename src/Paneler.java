@@ -25,6 +25,9 @@ public class Paneler extends JPanel {
 	
 	private int px = 0; 
 	private int py = 0;
+	public boolean deletionMode = false;
+	public int indexToDelete = -1;
+	public char listToDeleteFrom = 'n';
 	Paneler()
 	{
 		
@@ -205,6 +208,21 @@ public class Paneler extends JPanel {
 		{
 			public void mousePressed(MouseEvent e)
 			{ 
+				if (deletionMode == true)
+				{
+					for (int c = 0; c < cable.size(); c++)
+					{
+						for (int i = 0; i < cable.get(c).x.size() - 1; i++)
+						{
+							if (Math.abs(Math.sqrt(Math.pow(x - cable.get(c).x.get(i), 2) + Math.pow(y - cable.get(c).y.get(i), 2)) + Math.sqrt(Math.pow(cable.get(c).x.get(i + 1) - x, 2) + Math.pow(cable.get(c).y.get(i + 1) - y, 2)) - Math.sqrt(Math.pow(cable.get(c).x.get(i + 1) - cable.get(c).x.get(i), 2) + Math.pow(cable.get(c).y.get(i + 1) - cable.get(c).y.get(i), 2))) < .04)
+							{
+								indexToDelete = c;
+								listToDeleteFrom = 'C';
+								System.out.println("ts should delete");
+							}
+						}
+					}
+				}
 				for (int p = 0; p < power.size(); p++)
 				{
 					if (power.get(p).isNew == true)
@@ -304,6 +322,18 @@ public class Paneler extends JPanel {
 						}
 						repaint();
 			        }
+					
+					if (e.getKeyCode() == KeyEvent.VK_DELETE)
+			        {
+						if (deletionMode == false)
+						{
+							deletionMode = true;
+						} else if (deletionMode == true)
+						{
+							deletionMode = false;
+						}
+						repaint();
+			        }
 				}
 		});
 		this.setSize(500, 500);
@@ -316,7 +346,16 @@ public class Paneler extends JPanel {
 		Graphics2D A = (Graphics2D)g;
 		A.setPaint(Color.pink);
 		A.setStroke(new BasicStroke(9));
-		A.drawLine(x, y, x, y);
+		if (deletionMode == false)
+		{
+			A.drawLine(x, y, x, y);
+		} else if (deletionMode == true)
+		{
+			int v = 6;
+			A.setStroke(new BasicStroke(3));
+			A.drawLine(x + v, y  + v, x  - v, y  - v);
+			A.drawLine(x - v, y  + v, x  + v, y  - v);
+		}
 		A.setStroke(new BasicStroke(2));
 		A.setPaint(Color.black);
 		Font customFont = new Font("Arial", Font.BOLD, 24);

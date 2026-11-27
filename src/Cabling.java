@@ -54,6 +54,10 @@ public class Cabling extends Main{
 			if ((super.power.get(i).Ox == x.get(0) && super.power.get(i).Oy - 18 == y.get(0)) || (super.power.get(i).Ox == x.get(x.size() - 1) && super.power.get(i).Oy - 18 == y.get(y.size() - 1)))
 			{
 				Voltage = super.power.get(i).Voltage;
+				if (i != 0)
+				{
+					isNew = false;
+				}
 			}
 			
 			
