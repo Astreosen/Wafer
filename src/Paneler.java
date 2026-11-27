@@ -28,6 +28,7 @@ public class Paneler extends JPanel {
 	public boolean deletionMode = false;
 	public int indexToDelete = -1;
 	public char listToDeleteFrom = 'n';
+	public double delTolerance = 0.7;
 	Paneler()
 	{
 		
@@ -212,11 +213,32 @@ public class Paneler extends JPanel {
 					{
 						for (int i = 0; i < cable.get(c).x.size() - 1; i++)
 						{
-							if (Math.abs(Math.sqrt(Math.pow(x - cable.get(c).x.get(i), 2) + Math.pow(y - cable.get(c).y.get(i), 2)) + Math.sqrt(Math.pow(cable.get(c).x.get(i + 1) - x, 2) + Math.pow(cable.get(c).y.get(i + 1) - y, 2)) - Math.sqrt(Math.pow(cable.get(c).x.get(i + 1) - cable.get(c).x.get(i), 2) + Math.pow(cable.get(c).y.get(i + 1) - cable.get(c).y.get(i), 2))) < .04)
+							if (Math.abs(Math.sqrt(Math.pow(x - cable.get(c).x.get(i), 2) + Math.pow(y - cable.get(c).y.get(i), 2)) + Math.sqrt(Math.pow(cable.get(c).x.get(i + 1) - x, 2) + Math.pow(cable.get(c).y.get(i + 1) - y, 2)) - Math.sqrt(Math.pow(cable.get(c).x.get(i + 1) - cable.get(c).x.get(i), 2) + Math.pow(cable.get(c).y.get(i + 1) - cable.get(c).y.get(i), 2))) < delTolerance)
 							{
 								indexToDelete = c;
 								listToDeleteFrom = 'C';
 							}
+						}
+					}
+					
+					for (int i = 0; i < power.size(); i++)
+					{
+						if (Math.abs(Math.sqrt(Math.pow(x - power.get(i).Ox, 2) + Math.pow(y - power.get(i).Oy, 2)) + Math.sqrt(Math.pow(power.get(i).Ox - x, 2) + Math.pow(power.get(i).Oy - 18 - y, 2)) - Math.sqrt(Math.pow(power.get(i).Oy - 18.0 - power.get(i).Oy, 2))) < delTolerance)
+						{
+							indexToDelete = i;
+							listToDeleteFrom = 'P';
+						}
+						
+						if (Math.abs(Math.sqrt(Math.pow(x - (power.get(i).Ox - 30), 2) + Math.pow(y - power.get(i).Oy, 2)) + Math.sqrt(Math.pow(power.get(i).Ox + 30 - x, 2) + Math.pow(power.get(i).Oy - y, 2)) - Math.sqrt(Math.pow((power.get(i).Ox + 30) - (power.get(i).Ox - 30), 2))) < delTolerance)
+						{
+							indexToDelete = i;
+							listToDeleteFrom = 'P';
+						}
+						
+						if (Math.abs(Math.sqrt(Math.pow(x - (power.get(i).Ox - 15), 2) + Math.pow(y - (power.get(i).Oy + 10), 2)) + Math.sqrt(Math.pow(power.get(i).Ox + 15 - x, 2) + Math.pow((power.get(i).Oy + 10) - y, 2)) - Math.sqrt(Math.pow((power.get(i).Ox + 15) - (power.get(i).Ox - 15), 2))) < delTolerance)
+						{
+							indexToDelete = i;
+							listToDeleteFrom = 'P';
 						}
 					}
 				}
