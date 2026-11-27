@@ -250,6 +250,15 @@ public class Paneler extends JPanel {
 							listToDeleteFrom = 'T';
 						}
 					}
+					
+					for (int i = 0; i < Presists.size(); i++)
+					{
+						if ((Math.pow(x - Presists.get(i).Ox, 2) / 400) + (Math.pow(y - Presists.get(i).Oy, 2) / 100) <= 1)
+						{
+							indexToDelete = i;
+							listToDeleteFrom = 'R';
+						}
+					}
 				}
 				for (int p = 0; p < power.size(); p++)
 				{
