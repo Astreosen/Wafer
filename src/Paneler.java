@@ -241,6 +241,15 @@ public class Paneler extends JPanel {
 							listToDeleteFrom = 'P';
 						}
 					}
+					
+					for (int i = 0; i < transists.size(); i++)
+					{
+						if ((x > transists.get(i).Ox - (transists.get(i).width / 2) && x < transists.get(i).Ox + (transists.get(i).width / 2)) && (y > transists.get(i).Oy - (transists.get(i).height / 2) && y < transists.get(i).Oy + (transists.get(i).height / 2)))
+						{
+							indexToDelete = i;
+							listToDeleteFrom = 'T';
+						}
+					}
 				}
 				for (int p = 0; p < power.size(); p++)
 				{
