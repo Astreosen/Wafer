@@ -34,7 +34,6 @@ public class Main {
 				removeDupes();
 				cable.add(new Cabling());
 				cable.get(cable.size()-1).Physics();
-				System.out.println(cable);
 			}
 			framer.pane.requestFocusInWindow();
 			

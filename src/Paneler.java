@@ -103,7 +103,6 @@ public class Paneler extends JPanel {
 										
 										tx = cable.get(h).x.get(0);
 										ty = cable.get(h).y.get(0);
-										//System.out.println("99");
 									} else if (Math.abs(cable.get(h).x.get(cable.get(h).x.size()-1) - tx) <= 10 && Math.abs(cable.get(h).y.get(cable.get(h).x.size()-1) - ty) <= 10)
 									{
 										x = cable.get(h).x.get(cable.get(h).x.size()-1);
@@ -111,7 +110,6 @@ public class Paneler extends JPanel {
 										
 										tx = cable.get(h).x.get(cable.get(h).x.size()-1);
 										ty = cable.get(h).y.get(cable.get(h).x.size()-1);
-										//System.out.println("99");
 									}
 								}
 								
@@ -218,7 +216,6 @@ public class Paneler extends JPanel {
 							{
 								indexToDelete = c;
 								listToDeleteFrom = 'C';
-								System.out.println("ts should delete");
 							}
 						}
 					}
@@ -307,10 +304,8 @@ public class Paneler extends JPanel {
 		addKeyListener(new KeyAdapter() {
 				public void keyPressed(KeyEvent e)
 				{
-					System.out.println("5");
 					if (e.getKeyCode() == KeyEvent.VK_ENTER)
 			        {
-						System.out.println("8");
 						for (int c = 0; c < cable.size(); c++)
 						{
 							if (cable.get(c).isNew == true)
