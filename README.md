@@ -11,6 +11,7 @@ Transistors are a work in progress, and currently do nothing.
 HOW TO USE: 
 Download Java File and run the Main in an IDE such as Eclipse. After that it is mouse clicks to place stuff. 
 Press enter to finish placing cables. 
+Press delete to toggle Deletion Mode
 
 KNOWN ISSUES: 
 - Power not behaving correctly
